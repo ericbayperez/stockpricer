@@ -16,10 +16,10 @@ export class StocksService {
 
   constructor(private http: HttpClient) { }
 
-  getAppleStock(){
+  getStock(stockSymbol){
     let params = new HttpParams()
       .set('apikey', this.alphaApiKey)
-      .set('symbol', 'AAPL')
+      .set('symbol', stockSymbol)
       .set('function', 'TIME_SERIES_DAILY');
     return this.http.get(this.alphaBaseUrl, {params});
   }

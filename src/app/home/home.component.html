@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light justify-content-center">
   <span class="navbar-brand" href="#"><i class="fas fa-chart-line"></i> Stock News Ticker</span>
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="text" placeholder="Symbol">
+  <form class="form-inline my-2 my-lg-0" (ngSubmit)="onSearch()">
+    <input class="form-control mr-sm-2" type="text" placeholder="Symbol" [(ngModel)]="searchSymbol" name="searchSymbol" required>
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 </nav>
@@ -10,7 +10,7 @@
     <div>
       <h6 >Getting Started:</h6>
       <ol>
-        <li>Search a company's stock symbol (the 4-letter code only) in the search bar above.</li>
+        <li>Search a company's symbol (usually 4 or 5 letters) into the search bar above.</li>
         <li>View the graph of the stock prices, along with some recent news about that company.</li>
         <li>Click a point on the graph to see news stories about that company from around that time period.</li>
       </ol>
