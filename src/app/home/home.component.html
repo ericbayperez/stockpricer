@@ -1,3 +1,11 @@
-<p>
-  home works!
-</p>
+<div class="container" style="padding-top: 0.75rem; padding-bottom: 0.75rem">
+  <div class="card-columns">
+    <div class="card" *ngFor="let topStory of topNews">
+      <div class="card-body">
+        <h5 class="card-title">{{topStory.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{topStory.source.name}}: {{topStory.author}}</h6>
+        <p class="card-text">{{topStory.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
