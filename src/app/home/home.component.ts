@@ -33,27 +33,37 @@ export class HomeComponent implements OnInit {
   onSearch(){
     this.showGuide = false;
     this.getStock();
-    // this.createChartData();
-    // this.buildChart();
+    this.showStockGraph = true;
     this.getNews();
     this.showNewsStories = true;
   }
 
-  createChartData(){
-    //FORMAT DATA TO GO INTO CHART
-  }
-
   buildChart(){
+    let stockPrices = this.stockInfo["Time Series (Daily)"];
+    let days = Object.keys(stockPrices).map(function(key){
+      return key;
+    });
+    let prices = Object.keys(stockPrices).map(function(key){
+      return stockPrices[key]['2. high'];
+    });
     this.chart = new Chart('canvas',{
       type: 'line',
       options: {
+        legend: {
+          display: false
+        },
         scales: {
-          xAxes: [{
-            type: 'time'
-          }]
+          xAxes: [{type: 'time'}]
         }
       },
-      data: this.chartData
+      data: {
+        labels: days, 
+        datasets: [{
+          label: "Daily High",
+          backgroundColor: '#50BE76',
+          data: prices
+        }]
+      }
     });
   }
 
@@ -69,7 +79,7 @@ export class HomeComponent implements OnInit {
     this.stockService.getStock(this.searchSymbol).subscribe(
       data => { this.stockInfo = data },
       err => console.error(err),
-      () => console.log(this.stockInfo)
+      () => this.buildChart()
     );
   }
 
